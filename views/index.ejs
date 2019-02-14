@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Test Input</title>
+		<link href="/stylesheets/style.css" rel="stylesheet">
+	</head>
+	<body bgcolor="#ffffea">
+		<header>
+			
+			<div class="row">
+				<ul class="main-nav">
+					<li><a href=""> Home </a></li>
+					<li><a href=""> Other </a></li>
+					<li><a href=""> Other </a></li>
+					<li><a href=""> Other </a></li>
+				</ul>
+			</div>
+			
+			<div class="logo">
+				<img src="/images/MULogo.png" alt="MU Logo">
+			</div>
+		
+		</header>
+		<div class="toolName">
+			<p>Tool Name</p>
+		</div>
+		
+		<div class="content">
+		<br><br>
+			<fieldset>
+				<legend>Enter Protein Query Sequence</legend>
+				<p>Enter one protein accession, gi, or FATSA sequence</p>
+                <form method="post" action="/" enctype="multipart/form-data">
+				<div class="input">
+					<br>
+					<div class="formblock" id="qseq">
+						<textarea id="seq" class="reset" rows="5" cols="80" name="QUERY"></textarea>
+						<br>            
+					</div>   
+				</div>    
+				
+				<br>
+				<input type="file" id="upl" class="hidden" name="UPLOADFILE">    
+				<br>
+				<div class="submission">
+					<input type="submit" value="Submit">
+				</div>
+                </form>
+			</fieldset>  
+		
+		</div>
+		
+		<footer>
+		
+			<div class="footerInfo">
+				<p>This is some info about this page.</p> <br>
+				<hr><br>
+				<a href="">LINK</a> <br><br>
+				<div class="aboutInfo">
+					<p>National Center for Biotechnology Information, U.S. National Library of Medicine</p>
+					<p>8600 Rockville Pike, Bethesda MD, 20894 USA</p><br><br>
+					
+					<a href="">Contact</a>
+					|
+					<a href="">About Us</a>
+				</div>
+				
+			</div>
+		
+		</footer>
+
+	</body>
+</html>

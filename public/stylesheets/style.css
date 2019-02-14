@@ -1,0 +1,127 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+header
+{
+	background-color: #3d3d39;
+
+	height: 80px;
+}
+
+legend 
+{
+	
+	padding: 0.2em 0.5em;
+	border: 1px solid black;
+	font-size: 90%;
+	
+}
+
+fieldset
+{
+	
+	border: 1px solid black;
+	margin: 20px;
+	padding: 20px;
+	
+}
+
+footer
+{
+	
+	background-color: #3d3d39;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	
+}
+
+.toolName
+{
+	background-color: #54544e;
+}
+
+.toolName p 
+{
+	color: white;
+	font-family: "Roboto", sans-serif;
+	font-size: 30px;
+	font-weight: bold;
+	padding: 10px;
+	padding-left: 20px;
+}
+
+.main-nav
+{
+	float: right;
+	list-style: none;
+	margin-top: 30px;
+}
+
+.main-nav li
+{
+	
+	display: inline-block;
+	
+}
+
+.main-nav li a
+{
+	color: white;
+	text-decoration: none;
+	padding: 0px 30px;
+	font-family: "Roboto", sans-serif;
+	font-size: 15px;	
+}
+
+.logo img 
+{
+	width: 60px;
+	height: 60px;
+	padding: 10px;
+	float: left;
+}
+
+.content 
+{
+	background-color: #ffffea; 
+	font-family: "Roboto", sans-serif;
+}
+
+.footerInfo
+{
+	color: white;
+	font-family: "Roboto", sans-serif;
+	font-size: 15px;
+	margin: 10px;
+	padding: 10px;
+}
+
+.footerInfo a 
+{
+	color: white;
+	text-decoration: none;
+	font-family: "Roboto", sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.aboutInfo p {
+	
+	color: white;
+	font-family: "Roboto", sans-serif;
+	font-size: 12px;
+	
+}
+
+.aboutInfo a 
+{
+	color: white;
+	text-decoration: none;
+	font-family: "Roboto", sans-serif;
+	font-size: 12px;
+}
