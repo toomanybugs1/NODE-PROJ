@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var fileUpload = require('express-fileupload');
+var multer = require('multer');
 
 var indexRouter = require('./routes/index');
 var outputRouter = require('./routes/output')
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
+//app.use(multer({dest:'./uploads/'}));
 
 app.use('/', indexRouter);
 app.use('/output', outputRouter);
