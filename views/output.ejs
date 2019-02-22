@@ -4,7 +4,65 @@
 		<title>Test Output</title>
 		<link href="/stylesheets/style.css" rel="stylesheet">
 	</head>
-	<body bgcolor="#ffffea" onload="loadOutput()">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <script>
+        
+        var colorsBg = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ];
+        
+        var colorsBd = ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)' ];
+        
+        window.onload = function() {
+            
+            var proteins = <%- JSON.stringify(proteins) %>
+            
+            for (var i = 0; i < proteins.length; i++){
+                
+                var canvas = document.createElement("canvas");
+                var div = document.getElementById("chartList");
+                canvas.id = "myChart" + i;
+                canvas.width = 800;
+                canvas.height = 400;
+                div.appendChild(canvas);
+                var entryIndexes = [];
+                
+                for (var j = 0; j < proteins[i].entries.length; j++){
+            
+                    entryIndexes.push(j);
+            
+                }
+                //console.log(entryIndexes)
+            
+                var ctx = document.getElementById("myChart" + i);
+                var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: entryIndexes,
+                    datasets: [{
+                        label: proteins[i].name,
+                        data: proteins[i].entries,
+                        backgroundColor: colorsBg[ i % colorsBg.length ],
+                        borderColor: colorsBd[ i % colorsBd.length ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+            }
+        }
+
+    </script>
+	<body bgcolor="#ffffea">
 		<header>
 			
 			<div class="row">
@@ -25,20 +83,18 @@
 			<p>Tool Name</p>
 		</div>
 		
-		<div class="content">
+        <br><br>
+		<div class="content" id="chartList">
 		<br><br>
-			<fieldset>
-				<legend>Enter Protein Query Sequence</legend>
-				
-				
-				
-			</fieldset>  
 			
+            
+            
 		</div>
 		
 		<footer>
 		
 			<div class="footerInfo">
+                <br>
 				<p>This is some info about this page.</p> <br>
 				<hr><br>
 				<a href="">LINK</a> <br><br>
@@ -49,10 +105,9 @@
 					<a href="">Contact</a>
 					|
 					<a href="">About Us</a>
-				</div>
-				
-			</div>
-		
+                    <br>
+				</div>				
+			</div>		
 		</footer>
 
 	</body>
