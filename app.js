@@ -13,7 +13,6 @@ var usersRouter = require('./routes/users');
 
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended:false});
-
 var app = express();
 
 // view engine setup

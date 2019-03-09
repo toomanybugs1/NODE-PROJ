@@ -6,8 +6,6 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var Chart = require('chart.js')
 
-var jarPath = 'C:\\Users\\Trey\\Documents\\NodeJSPractice\\NodeApp\\myapp\\test.jar ';
-
 function parseProteins(inputTxt){
     
     var proteins = [];
@@ -18,8 +16,15 @@ function parseProteins(inputTxt){
         
         var curProt = {
             
-            head : "",
-            name: "",
+            head : {
+                
+                name: "",
+                domainNum: 0,
+                domains: [],
+                entryNum: 0,
+                
+            },
+            
             entries : [],
             
         }
@@ -27,12 +32,23 @@ function parseProteins(inputTxt){
         var headBody = proteinsText[i].split('\n'); //separates head and body
         var curEntries = headBody[1].split(' '); //splits our entries
         
-        curProt.head = headBody[0];
-        curProt.name = curProt.head.substr(0, 6); 
+        var headRaw = headBody[0].split('_');
+
+        curProt.head.name = headRaw[0]; 
+        curProt.head.domainNum = parseInt(headRaw[1]);
+        
+        var tempDomainNums = [];
+
+        curProt.head.domains = headRaw[2].split(' ');
+        
+        curProt.head.entryNum = parseInt(headRaw[3]);
+        
         curProt.entries = curEntries;
         
         proteins.push(curProt);
     }
+    
+    console.log(proteins[0].head);
 
     return proteins;
     

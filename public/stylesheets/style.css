@@ -41,11 +41,35 @@ footer
 
 canvas 
 {
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    text-align: center;
+    width: 50%
+}
+
+.mainDiv:after 
+{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.leftDiv 
+{
+    float: left;
+    width: 20%;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.centerDiv 
+{
+    float: left;
+    width: 60%;
+}
+
+.rightDiv 
+{
+    float: left;
+    width: 20%;
 }
 
 .toolName
