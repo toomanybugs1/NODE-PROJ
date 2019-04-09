@@ -47,8 +47,6 @@ function parseProteins(inputTxt){
         
         proteins.push(curProt);
     }
-    
-    console.log(proteins[0].head);
 
     return proteins;
     

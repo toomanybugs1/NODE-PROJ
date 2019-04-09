@@ -45,6 +45,32 @@ canvas
     width: 50%
 }
 
+.snapList
+{
+    text-align: center;
+    margin: auto;
+    padding: 50px;
+    width: 60%
+}
+
+.snapList a 
+{
+    margin: 10px;
+    padding: 5px;
+    display: inline-block;
+    background-color: #54544e;
+    color: white;
+    border-style: solid;
+    border-color: #54544e;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.mainDiv
+{
+   display: flex;
+}
+
 .mainDiv:after 
 {
     content: "";
@@ -58,6 +84,11 @@ canvas
     width: 20%;
     padding: 50px;
     box-sizing: border-box;
+}
+
+.leftDiv p
+{
+    padding: 10px;
 }
 
 .centerDiv 

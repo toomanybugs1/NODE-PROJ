@@ -1,180 +1,67 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Test Output</title>
-		<link href="/stylesheets/style.css" rel="stylesheet">
-	</head>
+    <head>
+        <title>Test Output</title>
+        <link href="/stylesheets/style.css" rel="stylesheet">
+    </head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.5/chartjs-plugin-annotation.js"></script>
+    <script src="/javascripts/output.js"></script>
     <script>
-        
-        var colorsBg = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ];
-        
-        var colorsBd = ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)' ];
-        
-        
-        window.onload = function() {
-            
+        window.onload = function(){
             var proteins = <%- JSON.stringify(proteins) %>
-            
-            for (var i = 0; i < proteins.length; i++){
-                
-                var contentDiv = document.getElementById("chartList");
-                
-                var mainDiv = document.createElement("div");
-                var leftDiv = document.createElement("div");
-                var centerDiv = document.createElement("div");
-                var rightDiv = document.createElement("div");
-                
-                mainDiv.setAttribute('class', 'mainDiv');
-                
-                leftDiv.setAttribute('class', 'leftDiv');
-                 
-                centerDiv.setAttribute('class', 'centerDiv');
-                 
-                rightDiv.setAttribute('class', 'rightDiv');
-                
-                mainDiv.appendChild(leftDiv);
-                mainDiv.appendChild(centerDiv);
-                mainDiv.appendChild(rightDiv);
-                
-                contentDiv.appendChild(mainDiv);
-                
-                var canvas = document.createElement("canvas");
-                
-                var p = document.createElement("p");
-                var pText = document.createTextNode("Domains: " + proteins[i].head.domains);
-                p.appendChild(pText);
-                leftDiv.appendChild(p);
-                
-                canvas.id = "myChart" + i;
-                canvas.width = 800;
-                canvas.height = 400;
-                centerDiv.appendChild(canvas);
-                var entryIndexes = [proteins[i].head.entryNum];
-                
-                for (var j = 0; j < proteins[i].head.entryNum; j++){
-            
-                    entryIndexes[j] = j + 1;
-            
-                }
-                
-                var domainIndexes = [];
-                for (var k = 0; k < proteins[i].head.domainNum; k++){
-                    
-                    var nums = proteins[i].head.domains[k].split('-');
-                    domainIndexes.push(nums[0]);
-                    domainIndexes.push(nums[1])
-                    
-                }
-                
-                console.log(entryIndexes);
-                
-                var annotations = [{ //this is our horizontal line
-                                    drawTime: "afterDatasetsDraw",
-                                    id: "hLine",
-                                    type: 'line',
-                                    mode: 'horizontal',
-                                    scaleID: 'y-axis-0',
-                                    value: '0.42',
-                                    borderColor: 'black',
-                                    borderWidth: 1,
-                                  }];
-                
-                for (var l = 0; l < domainIndexes.length; l++){
-                    
-                    annotations.push({
-                        drawTime: "afterDatasetsDraw",
-                        id: "dLine" + l,
-                        type: 'line',
-                        mode: 'vertical',
-                        scaleID: 'x-axis-0',
-                        value: parseInt(domainIndexes[l]),
-                        borderColor: colorsBd[ i % colorsBd.length ],
-                        borderWidth: 1,
-                    });
-                    
-                }
-                
-            
-                var ctx = document.getElementById("myChart" + i);
-                var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: entryIndexes,
-                    datasets: [{
-                        label: proteins[i].head.name,
-                        data: proteins[i].entries,
-                        backgroundColor: colorsBg[ i % colorsBg.length ],
-                        borderColor: colorsBd[ i % colorsBd.length ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
-                            }
-                        }]
-                    },
-                        annotation: {
-                            annotations: annotations,
-                        },
-                }
-            });
-            }
+                loadCharts(proteins);
         }
-
     </script>
-	<body bgcolor="#3d3d39">
-		<header>
-			
-			<div class="row">
-				<ul class="main-nav">
-					<li><a href=""> Home </a></li>
-					<li><a href=""> Other </a></li>
-					<li><a href=""> Other </a></li>
-					<li><a href=""> Other </a></li>
-				</ul>
-			</div>
-			
-			<div class="logo">
-				<img src="/images/MULogo.png" alt="MU Logo">
-			</div>
-		
-		</header>
-		<div class="toolName">
-			<p>Tool Name</p>
-		</div>
-		<div class="content" id="chartList">
-		<br><br><br><br><br><br>
-			
-            
-            
-		</div>
-		
-		<footer>
-		
-			<div class="footerInfo">
-                <br>
-				<p>This is some info about this page.</p> <br>
-				<hr><br>
-				<a href="">LINK</a> <br><br>
-				<div class="aboutInfo">
-					<p>National Center for Biotechnology Information, U.S. National Library of Medicine</p>
-					<p>8600 Rockville Pike, Bethesda MD, 20894 USA</p><br><br>
-					
-					<a href="">Contact</a>
-					|
-					<a href="">About Us</a>
-                    <br>
-				</div>				
-			</div>		
-		</footer>
+    <body bgcolor="#3d3d39">
+        <header>
 
-	</body>
+            <div class="row">
+                <ul class="main-nav">
+                    <li><a href=""> Home </a></li>
+                    <li><a href=""> Other </a></li>
+                    <li><a href=""> Other </a></li>
+                    <li><a href=""> Other </a></li>
+                </ul>
+            </div>
+
+            <div class="logo">
+                <img src="/images/MULogo.png" alt="MU Logo">
+            </div>
+
+        </header>
+        <body>
+            <div class="toolName">
+                <p>Tool Name</p>
+            </div>
+            <div class="content" id="chartList">
+                <div id="snapControl" class="snapList">
+                
+                </div>
+                <br><br>
+
+
+
+            </div>
+        </body>
+        <footer>
+
+            <div class="footerInfo">
+                <br>
+                <p>This is some info about this page.</p> <br>
+                <hr><br>
+                <a href="">LINK</a> <br><br>
+                <div class="aboutInfo">
+                    <p>National Center for Biotechnology Information, U.S. National Library of Medicine</p>
+                    <p>8600 Rockville Pike, Bethesda MD, 20894 USA</p><br><br>
+
+                    <a href="">Contact</a>
+                    |
+                    <a href="">About Us</a>
+                    <br>
+                </div>				
+            </div>		
+        </footer>
+
+    </body>
 </html>
